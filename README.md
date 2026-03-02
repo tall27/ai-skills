@@ -1,6 +1,12 @@
 # AI Skills
 
-A personal collection of AI agent skills following the [Agent Skills](https://agentskills.io) open standard. Skills work across Claude Code, OpenCode, and other AI-powered development tools.
+A personal collection of AI agent skills following the [Agent Skills](https://agentskills.io) open standard and [AGENTS.md](https://agents.md) conventions.
+
+Works across **60k+ projects** and tools including:
+- **Claude Code** / **OpenCode** / **Cursor** / **Windsurf**
+- **OpenAI Codex** / **Google Jules** / **GitHub Copilot**
+- **Aider** / **Zed** / **VS Code** / **RooCode**
+- And [many more...](https://agents.md)
 
 ## Quick Start
 
@@ -30,7 +36,7 @@ The installer automatically detects and copies skills to:
 |--------|------|------|
 | `claude` | `~/.claude/skills/` | Claude Code |
 | `opencode` | `~/.config/opencode/skills/` | OpenCode |
-| `agents` | `~/.agents/skills/` | Universal agents |
+| `agents` | `~/.agents/skills/` | AGENTS.md compatible (Codex, Jules, Cursor, Copilot, etc.) |
 
 ## Skills Catalog
 
@@ -139,6 +145,13 @@ Instructions for the AI agent...
 1. Make changes to skills in this repository
 2. Push to GitHub: `git push`
 3. On another machine: `git pull && python install.py --all --force`
+
+## Standards
+
+This repository follows two complementary standards:
+
+- **[AGENTS.md](https://agents.md)** - Instructions for AI agents working with this repository (see `AGENTS.md` in root)
+- **[Agent Skills](https://agentskills.io)** - Reusable skill definitions via `SKILL.md` files
 
 ## License
 
