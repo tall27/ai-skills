@@ -1,135 +1,120 @@
 # AI Skills
 
-A personal collection of AI agent skills following the [Agent Skills](https://agentskills.io) open standard and [AGENTS.md](https://agents.md) conventions.
+Централизованное хранилище AI-скиллов для синхронизации между несколькими машинами (Windows, macOS, Linux).
 
-Works across **60k+ projects** and tools including:
+Следует стандартам [Agent Skills](https://agentskills.io) и [AGENTS.md](https://agents.md).
+
+Работает с **60k+ проектами** и инструментами:
 - **Claude Code** / **OpenCode** / **Cursor** / **Windsurf**
 - **OpenAI Codex** / **Google Jules** / **GitHub Copilot**
 - **Aider** / **Zed** / **VS Code** / **RooCode**
-- And [many more...](https://agents.md)
+- И [многими другими...](https://agents.md)
 
 ## Quick Start
 
 ```bash
-# Clone the repository
+# Клонировать репозиторий
 git clone https://github.com/tall27/ai-skills.git
 cd ai-skills
 
-# List available skills
+# Показать доступные скиллы
 python install.py --list
 
-# Install all skills to detected AI tools
+# Установить все скиллы
 python install.py --all
 
-# Install specific skills
-python install.py --install mailtm "n8n-*"
+# Установить конкретный скилл
+python install.py --install mailtm
 
-# Install to specific target only
+# Установить только для Claude
 python install.py --all --target claude
 ```
 
-## Installation Targets
+## Куда устанавливаются скиллы
 
-The installer automatically detects and copies skills to:
+| Директория | Инструменты |
+|------------|-------------|
+| `~/.claude/skills/` | Claude Code |
+| `~/.config/opencode/skills/` | OpenCode |
+| `~/.agents/skills/` | Codex, Jules, Cursor, Copilot и др. |
 
-| Target | Path | Tool |
-|--------|------|------|
-| `claude` | `~/.claude/skills/` | Claude Code |
-| `opencode` | `~/.config/opencode/skills/` | OpenCode |
-| `agents` | `~/.agents/skills/` | AGENTS.md compatible (Codex, Jules, Cursor, Copilot, etc.) |
-
-## Skills Catalog
+## Skills Catalog (9 скиллов)
 
 ### Utility Skills
 
 | Skill | Description |
 |-------|-------------|
-| [mailtm](skills/mailtm/) | Temporary email via mail.tm for testing sign-up flows, OTPs, and email verification |
-| [skill-import](skills/skill-import/) | Import skills from external GitHub repositories |
+| [mailtm](skills/mailtm/) | Временная почта для тестирования регистраций, OTP, верификации email |
+| [skill-import](skills/skill-import/) | Импорт скиллов из других GitHub репозиториев |
 
 ### n8n Workflow Automation
 
 | Skill | Description |
 |-------|-------------|
-| [n8n-workflow-patterns](skills/n8n-workflow-patterns/) | Proven workflow architectural patterns from real n8n workflows |
-| [n8n-code-javascript](skills/n8n-code-javascript/) | Write JavaScript code in n8n Code nodes |
-| [n8n-code-python](skills/n8n-code-python/) | Write Python code in n8n Code nodes |
-| [n8n-expression-syntax](skills/n8n-expression-syntax/) | Validate n8n expression syntax and fix common errors |
-| [n8n-mcp-tools-expert](skills/n8n-mcp-tools-expert/) | Expert guide for using n8n-mcp MCP tools effectively |
-| [n8n-node-configuration](skills/n8n-node-configuration/) | Operation-aware node configuration guidance |
-| [n8n-validation-expert](skills/n8n-validation-expert/) | Interpret validation errors and guide fixing them |
+| [n8n-workflow-patterns](skills/n8n-workflow-patterns/) | Архитектурные паттерны для n8n воркфлоу |
+| [n8n-code-javascript](skills/n8n-code-javascript/) | JavaScript в n8n Code nodes |
+| [n8n-code-python](skills/n8n-code-python/) | Python в n8n Code nodes |
+| [n8n-expression-syntax](skills/n8n-expression-syntax/) | Валидация синтаксиса n8n выражений |
+| [n8n-mcp-tools-expert](skills/n8n-mcp-tools-expert/) | Гайд по n8n-mcp MCP tools |
+| [n8n-node-configuration](skills/n8n-node-configuration/) | Конфигурация n8n нод |
+| [n8n-validation-expert](skills/n8n-validation-expert/) | Интерпретация ошибок валидации |
 
-## Usage
-
-### Install specific skills
+## Использование install.py
 
 ```bash
-# Single skill
-python install.py --install mailtm
+# Показать все скиллы
+python install.py --list
 
-# Multiple skills
+# Установить все
+python install.py --all
+
+# Установить конкретные скиллы
 python install.py --install mailtm n8n-workflow-patterns
 
-# Wildcard pattern
+# Установить по паттерну
 python install.py --install "n8n-*"
-```
 
-### Install to specific targets
-
-```bash
-# Only Claude Code
-python install.py --all --target claude
-
-# Multiple targets
+# Установить только для определённых инструментов
 python install.py --all --target claude opencode
-```
 
-### Overwrite existing skills
+# Перезаписать существующие
+python install.py --all --force
 
-```bash
-python install.py --install mailtm --force
-```
-
-### Uninstall skills
-
-```bash
+# Удалить скилл
 python install.py --uninstall mailtm
-```
 
-### Dry run (see what would happen)
-
-```bash
+# Dry run (посмотреть что будет сделано)
 python install.py --all --dry-run
 ```
 
-## Importing External Skills
+## Синхронизация между машинами
 
-Use the `skill-import` skill to add skills from other GitHub repositories:
+**На машине где изменил скиллы:**
+```bash
+git add . && git commit -m "update skills" && git push
+```
 
-1. Load the skill in your AI tool
-2. Ask: "Import the pdf-analyzer skill from TerminalSkills/skills"
-3. The AI will download and commit the skill to this repository
+**На другой машине:**
+```bash
+git pull && python install.py --all --force
+```
 
-See [skill-import/SKILL.md](skills/skill-import/SKILL.md) for details.
-
-## Skill Structure
-
-Each skill follows the Agent Skills standard:
+## Структура скилла
 
 ```
 skills/
 └── skill-name/
-    ├── SKILL.md          # Required: YAML frontmatter + instructions
-    ├── helper.py         # Optional: helper scripts
-    └── resources/        # Optional: additional files
+    ├── SKILL.md          # Обязательно: YAML frontmatter + инструкции
+    ├── helper.py         # Опционально: вспомогательные скрипты
+    └── resources/        # Опционально: дополнительные файлы
 ```
 
-### SKILL.md Format
+### Формат SKILL.md
 
 ```markdown
 ---
 name: skill-name
-description: Brief description
+description: Краткое описание
 author: your-name
 version: 1.0.0
 tags: [tag1, tag2]
@@ -137,21 +122,21 @@ tags: [tag1, tag2]
 
 # Skill Name
 
-Instructions for the AI agent...
+Инструкции для AI агента...
 ```
 
-## Syncing Across Machines
+## Импорт внешних скиллов
 
-1. Make changes to skills in this repository
-2. Push to GitHub: `git push`
-3. On another machine: `git pull && python install.py --all --force`
+Используй скилл `skill-import` для добавления скиллов из других GitHub репозиториев:
+
+1. Загрузи скилл в AI инструменте
+2. Попроси: "Import the pdf-analyzer skill from TerminalSkills/skills"
+3. AI скачает и закоммитит скилл в этот репозиторий
 
 ## Standards
 
-This repository follows two complementary standards:
-
-- **[AGENTS.md](https://agents.md)** - Instructions for AI agents working with this repository (see `AGENTS.md` in root)
-- **[Agent Skills](https://agentskills.io)** - Reusable skill definitions via `SKILL.md` files
+- **[AGENTS.md](https://agents.md)** — инструкции для AI агентов (см. `AGENTS.md` в корне)
+- **[Agent Skills](https://agentskills.io)** — стандарт для `SKILL.md` файлов
 
 ## License
 
