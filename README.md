@@ -38,7 +38,7 @@ python install.py --all --target claude
 | `~/.config/opencode/skills/` | OpenCode |
 | `~/.agents/skills/` | Codex, Jules, Cursor, Copilot и др. |
 
-## Skills Catalog (9 скиллов)
+## Skills Catalog (10 скиллов)
 
 ### Utility Skills
 
@@ -46,6 +46,12 @@ python install.py --all --target claude
 |-------|-------------|
 | [mailtm](skills/mailtm/) | Временная почта для тестирования регистраций, OTP, верификации email |
 | [skill-import](skills/skill-import/) | Импорт скиллов из других GitHub репозиториев |
+
+### Web Scraping & Automation
+
+| Skill | Description |
+|-------|-------------|
+| [puppeteer-stealth](skills/puppeteer-stealth/) | Обход bot detection на защищённых сайтах с puppeteer-extra stealth plugin |
 
 ### n8n Workflow Automation
 
