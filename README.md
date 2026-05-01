@@ -1,126 +1,121 @@
 # AI Skills
 
-Централизованное хранилище AI-скиллов для синхронизации между несколькими машинами (Windows, macOS, Linux).
+A centralized repository of reusable **AI agent skills** — install once, use across all your AI coding tools.
 
-Следует стандартам [Agent Skills](https://agentskills.io) и [AGENTS.md](https://agents.md).
+Follows the [Agent Skills](https://agentskills.io) and [AGENTS.md](https://agents.md) standards.
 
-Работает с **60k+ проектами** и инструментами:
-- **Claude Code** / **OpenCode** / **Cursor** / **Windsurf**
-- **OpenAI Codex** / **Google Jules** / **GitHub Copilot**
-- **Aider** / **Zed** / **VS Code** / **RooCode**
-- И [многими другими...](https://agents.md)
+Works with **Claude Code**, **Cursor**, **Copilot**, **Aider**, **OpenCode**, **Codex**, **Jules**, **Zed**, **VS Code**, **RooCode**, and [many more](https://agents.md).
+
+---
+
+## What Is a Skill?
+
+A skill is a folder with a `SKILL.md` file containing instructions that teach an AI agent how to use a specific tool or API. Instead of re-explaining things every session, you install the skill once and it's always available.
+
+---
 
 ## Quick Start
 
 ```bash
-# Клонировать репозиторий
+# Clone the repo
 git clone https://github.com/tall27/ai-skills.git
 cd ai-skills
 
-# Показать доступные скиллы
+# See available skills
 python install.py --list
 
-# Установить все скиллы
+# Install everything
 python install.py --all
 
-# Установить конкретный скилл
+# Install one skill
 python install.py --install mailtm
 
-# Установить только для Claude
+# Install only for Claude Code
 python install.py --all --target claude
 ```
 
-## Куда устанавливаются скиллы
+---
 
-| Директория | Инструменты |
-|------------|-------------|
-| `~/.claude/skills/` | Claude Code |
-| `~/.config/opencode/skills/` | OpenCode |
-| `~/.agents/skills/` | Codex, Jules, Cursor, Copilot и др. |
+## Skills (10 total)
 
-## Skills Catalog (10 скиллов)
-
-### Utility Skills
-
-| Skill | Description |
+### Utility
+| Skill | What it does |
 |-------|-------------|
-| [mailtm](skills/mailtm/) | Временная почта для тестирования регистраций, OTP, верификации email |
-| [skill-import](skills/skill-import/) | Импорт скиллов из других GitHub репозиториев |
+| [mailtm](skills/mailtm/) | Temporary email for testing registrations, OTP, and email verification |
+| [skill-import](skills/skill-import/) | Import skills from other GitHub repositories |
 
-### Web Scraping & Automation
-
-| Skill | Description |
+### Web Automation
+| Skill | What it does |
 |-------|-------------|
-| [puppeteer-stealth](skills/puppeteer-stealth/) | Обход bot detection на защищённых сайтах с puppeteer-extra stealth plugin |
+| [puppeteer-stealth](skills/puppeteer-stealth/) | Web scraping with bot-detection bypass via puppeteer-extra stealth plugin |
 
 ### n8n Workflow Automation
-
-| Skill | Description |
+| Skill | What it does |
 |-------|-------------|
-| [n8n-workflow-patterns](skills/n8n-workflow-patterns/) | Архитектурные паттерны для n8n воркфлоу |
-| [n8n-code-javascript](skills/n8n-code-javascript/) | JavaScript в n8n Code nodes |
-| [n8n-code-python](skills/n8n-code-python/) | Python в n8n Code nodes |
-| [n8n-expression-syntax](skills/n8n-expression-syntax/) | Валидация синтаксиса n8n выражений |
-| [n8n-mcp-tools-expert](skills/n8n-mcp-tools-expert/) | Гайд по n8n-mcp MCP tools |
-| [n8n-node-configuration](skills/n8n-node-configuration/) | Конфигурация n8n нод |
-| [n8n-validation-expert](skills/n8n-validation-expert/) | Интерпретация ошибок валидации |
+| [n8n-workflow-patterns](skills/n8n-workflow-patterns/) | Architectural patterns for n8n workflows |
+| [n8n-code-javascript](skills/n8n-code-javascript/) | JavaScript inside n8n Code nodes |
+| [n8n-code-python](skills/n8n-code-python/) | Python inside n8n Code nodes |
+| [n8n-expression-syntax](skills/n8n-expression-syntax/) | Validate n8n expression syntax |
+| [n8n-mcp-tools-expert](skills/n8n-mcp-tools-expert/) | Guide for using n8n MCP tools |
+| [n8n-node-configuration](skills/n8n-node-configuration/) | Help configuring n8n nodes |
+| [n8n-validation-expert](skills/n8n-validation-expert/) | Interpret n8n validation errors |
 
-## Использование install.py
+---
+
+## Where Skills Get Installed
+
+| Directory | Tools |
+|-----------|-------|
+| `~/.claude/skills/` | Claude Code |
+| `~/.config/opencode/skills/` | OpenCode |
+| `~/.agents/skills/` | Codex, Jules, Cursor, Copilot, and others |
+
+---
+
+## Installer Options
 
 ```bash
-# Показать все скиллы
-python install.py --list
-
-# Установить все
-python install.py --all
-
-# Установить конкретные скиллы
-python install.py --install mailtm n8n-workflow-patterns
-
-# Установить по паттерну
-python install.py --install "n8n-*"
-
-# Установить только для определённых инструментов
-python install.py --all --target claude opencode
-
-# Перезаписать существующие
-python install.py --all --force
-
-# Удалить скилл
-python install.py --uninstall mailtm
-
-# Dry run (посмотреть что будет сделано)
-python install.py --all --dry-run
+python install.py --list                          # List all skills
+python install.py --all                           # Install all skills
+python install.py --install mailtm puppeteer-stealth  # Install specific skills
+python install.py --install "n8n-*"               # Install by pattern
+python install.py --all --target claude opencode  # Install for specific tools only
+python install.py --all --force                   # Overwrite existing installs
+python install.py --uninstall mailtm              # Remove a skill
+python install.py --all --dry-run                 # Preview what would happen
 ```
 
-## Синхронизация между машинами
+---
 
-**На машине где изменил скиллы:**
+## Sync Between Machines
+
+**After making changes:**
 ```bash
 git add . && git commit -m "update skills" && git push
 ```
 
-**На другой машине:**
+**On another machine:**
 ```bash
 git pull && python install.py --all --force
 ```
 
-## Структура скилла
+---
+
+## Skill Structure
 
 ```
 skills/
 └── skill-name/
-    ├── SKILL.md          # Обязательно: YAML frontmatter + инструкции
-    ├── helper.py         # Опционально: вспомогательные скрипты
-    └── resources/        # Опционально: дополнительные файлы
+    ├── SKILL.md       # Required: YAML frontmatter + AI instructions
+    ├── helper.py      # Optional: helper scripts
+    └── resources/     # Optional: extra files
 ```
 
-### Формат SKILL.md
-
+**SKILL.md format:**
 ```markdown
 ---
 name: skill-name
-description: Краткое описание
+description: Short description
 author: your-name
 version: 1.0.0
 tags: [tag1, tag2]
@@ -128,21 +123,20 @@ tags: [tag1, tag2]
 
 # Skill Name
 
-Инструкции для AI агента...
+Instructions for the AI agent...
 ```
 
-## Импорт внешних скиллов
+---
 
-Используй скилл `skill-import` для добавления скиллов из других GitHub репозиториев:
+## Importing External Skills
 
-1. Загрузи скилл в AI инструменте
-2. Попроси: "Import the pdf-analyzer skill from TerminalSkills/skills"
-3. AI скачает и закоммитит скилл в этот репозиторий
+Use the `skill-import` skill to pull in skills from other GitHub repos:
 
-## Standards
+1. Load the skill in your AI tool
+2. Ask: *"Import the pdf-analyzer skill from TerminalSkills/skills"*
+3. The AI downloads and commits it to this repo
 
-- **[AGENTS.md](https://agents.md)** — инструкции для AI агентов (см. `AGENTS.md` в корне)
-- **[Agent Skills](https://agentskills.io)** — стандарт для `SKILL.md` файлов
+---
 
 ## License
 
