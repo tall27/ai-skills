@@ -38,7 +38,7 @@ python install.py --all --target claude
 | `~/.config/opencode/skills/` | OpenCode |
 | `~/.agents/skills/` | Codex, Jules, Cursor, Copilot и др. |
 
-## Skills Catalog (10 скиллов)
+## Skills Catalog (17 скиллов)
 
 ### Utility Skills
 
@@ -64,6 +64,20 @@ python install.py --all --target claude
 | [n8n-mcp-tools-expert](skills/n8n-mcp-tools-expert/) | Гайд по n8n-mcp MCP tools |
 | [n8n-node-configuration](skills/n8n-node-configuration/) | Конфигурация n8n нод |
 | [n8n-validation-expert](skills/n8n-validation-expert/) | Интерпретация ошибок валидации |
+
+### NGTS (Palo Alto Strata Cloud Manager) — обзор в [NGTS/](NGTS/)
+
+Общие правила API лежат в [skills/_shared](skills/_shared/); `install.py` копирует их вместе с любым `ngts-*` скиллом.
+
+| Skill | Description |
+|-------|-------------|
+| [ngts-auth-access](skills/ngts-auth-access/) | OAuth‑токены, поиск TSG, NGTS Built-in Accounts |
+| [ngts-certificate-governance](skills/ngts-certificate-governance/) | Issuing templates (request policies), issuance policies Built-in PKI, правила согласования |
+| [ngts-certificate-inventory](skills/ngts-certificate-inventory/) | Инвентарь сертификатов, TLS endpoints, discovery, теги, мониторинг продления |
+| [ngts-certificate-provisioning](skills/ngts-certificate-provisioning/) | Импорт и запросы сертификатов, SCEP‑серверы, диагностика SCEP enrollment |
+| [ngts-issuers](skills/ngts-issuers/) | Distributed issuers, sub-CA providers, создание и вывод из эксплуатации root/sub‑CA Built-in PKI |
+| [ngts-machines-connectors](skills/ngts-machines-connectors/) | Машины, коннекторы, учётные данные, VSatellites |
+| [ngts-platform-ops](skills/ngts-platform-ops/) | Activity и audit логи |
 
 ## Использование install.py
 

@@ -134,6 +134,10 @@ def copy_skill(skill_name: str, target_path: Path, force: bool = False) -> bool:
 
     try:
         shutil.copytree(source, dest)
+        # Skills that read ../_shared/ (the NGTS family) need the shared folder next to them.
+        shared = get_skills_dir() / "_shared"
+        if shared.exists() and "../_shared/" in (source / "SKILL.md").read_text(encoding="utf-8"):
+            shutil.copytree(shared, target_path / "_shared", dirs_exist_ok=True)
         return True
     except Exception as e:
         print(f"{Colors.RED}Error copying {skill_name}: {e}{Colors.RESET}")
